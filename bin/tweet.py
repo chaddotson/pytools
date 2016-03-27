@@ -11,6 +11,7 @@ from pytools.twitter import tweet
 
 logger = getLogger(__name__)
 
+
 def get_args():
     parser = ArgumentParser(description='No Nonsense Tweet Publisher')
     parser.add_argument('message', help='Message to tweet')
@@ -19,10 +20,8 @@ def get_args():
 
     return parser.parse_args()
 
-
-if __name__=="__main__":
-    logging_config=dict(level=INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
+if __name__ == "__main__":
+    logging_config = dict(level=INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     if PY2:
         logging_config['disable_existing_loggers'] = True
@@ -36,7 +35,9 @@ if __name__=="__main__":
     timestamp = datetime.now().strftime("%H:%M:%S")
     machine = gethostname()
 
-    message = "CNC/{machine} [{timestamp}]: {content}".format(machine=machine, timestamp=timestamp, content=args.message)
+    message = "CNC/{machine} [{timestamp}]: {content}".format(machine=machine,
+                                                              timestamp=timestamp,
+                                                              content=args.message)
 
     logger.info("Sending message to twitter: %s", message)
     tweet(config.get("TWITTER", "CONSUMER_KEY"),
