@@ -14,10 +14,16 @@ with open("requirements.txt", "r'") as f:
 setup(
     name='pytools',
     version=version,
-    packages=['pytools', 'pytools.core', 'pytools.twitter'],
+    packages=['pytools', 'pytools.core', 'pytools.twitter', 'bin'],
     url='',
     license='',
     author='Chad Dotson',
     author_email='chad@cdotson.com',
-    description=''
+    description='',
+    install_requires=install_reqs,
+    entry_points={
+        'console_scripts': [
+            'tweet = bin.tweet:main',
+        ]
+    },
 )

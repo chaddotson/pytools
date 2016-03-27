@@ -20,7 +20,8 @@ def get_args():
 
     return parser.parse_args()
 
-if __name__ == "__main__":
+
+def main():
     logging_config = dict(level=INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     if PY2:
@@ -50,3 +51,6 @@ if __name__ == "__main__":
           message)
 
     logger.info("Done")
+
+if __name__ == "__main__":
+    main()
