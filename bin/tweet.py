@@ -35,9 +35,12 @@ if __name__ == "__main__":
     timestamp = datetime.now().strftime("%H:%M:%S")
     machine = gethostname()
 
-    message = "CNC/{machine} [{timestamp}]: {content}".format(machine=machine,
-                                                              timestamp=timestamp,
-                                                              content=args.message)
+    if args.no_stamp:
+        message = args.message
+    else:
+        message = "CNC/{machine} [{timestamp}]: {content}".format(machine=machine,
+                                                                  timestamp=timestamp,
+                                                                  content=args.message)
 
     logger.info("Sending message to twitter: %s", message)
     tweet(config.get("TWITTER", "CONSUMER_KEY"),
