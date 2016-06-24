@@ -30,7 +30,7 @@ class SMTPSender(object):
         logger.debug("Created SMTP Sender.")
 
     def send_email(self, mime_email):
-        logger.info("Logging into SMTP server")
+        logger.debug("Logging into SMTP server")
         smtp_connection = smtplib.SMTP(self._smtp_server, self._smtp_port)
         smtp_connection.ehlo()
         smtp_connection.starttls()
@@ -101,8 +101,12 @@ class IMAPReceiver(object):
 
             return_code, raw_messages = imap_connection.search(None, 'UNSEEN')
 
+            logger.debug("Raw messages: %s", raw_messages)
+
+            message_numbers = raw_messages[0].split(b' ') if raw_messages != [b''] else []
+
             if return_code == "OK":
-                for num in raw_messages[0].split(b' '):
+                for num in message_numbers:
                     logger.debug("Fetching email %s", num)
 
                     typ, data = imap_connection.fetch(num, '(RFC822)')
