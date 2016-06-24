@@ -8,7 +8,7 @@ def read(fname):
     return open(join(dirname(__file__), fname)).read()
 
 
-with open("requirements.txt", "r'") as f:
+with open("requirements.txt", "r") as f:
     install_reqs = f.readlines()
 
 setup(
