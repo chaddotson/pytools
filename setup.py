@@ -12,7 +12,7 @@ with open("requirements.txt", "r") as f:
     install_reqs = f.readlines()
 
 setup(
-    name='mypytools',
+    name='pytools',
     version=version,
     packages=['pytools', 'pytools.core', 'pytools.twitter', 'bin'],
     url='',
