@@ -14,7 +14,7 @@ with open("requirements.txt", "r") as f:
 setup(
     name='pytools',
     version=version,
-    packages=['pytools', 'pytools.core', 'pytools.twitter', 'bin'],
+    packages=['pytools', 'pytools.core', 'pytools.email', 'pytools.twitter', 'bin'],
     url='',
     license='',
     author='Chad Dotson',
