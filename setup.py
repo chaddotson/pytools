@@ -1,12 +1,6 @@
 from setuptools import setup
-from os.path import dirname, join
 
 version = '0.1.1'
-
-
-def read(fname):
-    return open(join(dirname(__file__), fname)).read()
-
 
 with open("requirements.txt", "r") as f:
     install_reqs = f.readlines()
