@@ -20,8 +20,8 @@ class PingFailedError(RuntimeError):
         super(PingFailedError, self).__init__("Failed to ping {0}.  Host possibly down.".format(host))
 
 
-def ping(host, count=3):
-    call_list = ["ping", "-c", str(count), host]
+def ping(host, ping_count=3):
+    call_list = ["ping", "-c", str(ping_count), host]
     process = Popen(call_list, stdout=PIPE)
     results, err = process.communicate()
     time_results = compiled_ping_results_pattern.search(results)
@@ -36,3 +36,11 @@ def ping(host, count=3):
                        stddev=float(time_result_matches[3]),
                        percent_packet_loss=float(packet_loss_matches[0]))
 
+
+def is_online(host, ping_count=3):
+    try:
+        results = ping(host, ping_count=ping_count)
+        return results.percent_packet_loss < 100.0
+
+    except PingFailedError:
+        return False
