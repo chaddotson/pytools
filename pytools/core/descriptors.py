@@ -9,7 +9,7 @@ class Attribute(object):
         self._valid_types = types if type(types) is list or types is None else [types]
 
         logger.debug("%s(name=%s, types=%s, default=%s, args=%s, kwargs=%s)",
-            self.__class__.__name__, name, types, default, args, kwargs)
+                     self.__class__.__name__, name, types, default, args, kwargs)
 
         self._name = "__" + name
 
@@ -81,4 +81,3 @@ class DateTimeAttribute(Attribute):
 
         if self._end_date is not None and val > self._end_date:
             raise TypeError("date must be on or before {0}".format(self._end_date))
-
