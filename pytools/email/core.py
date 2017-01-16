@@ -112,8 +112,8 @@ class IMAPReceiver(object):
 
             query = self._build_query(from_addr, read)
 
-            #connection.select()
-            connection.select(readonly=1)
+            connection.select()
+            #connection.select(readonly=1)
 
             logger.debug("Searching mailbox: %s", query)
 
