@@ -18,7 +18,7 @@ logger = getLogger(__name__)
 
 class SMTPSender(object):
 
-    def __init__(self, username, password, server, port):
+    def __init__(self, username: str, password: str, server: str, port: int):
         self._server = server
         self._port = port
         self._username = username
@@ -46,7 +46,7 @@ class SMTPSender(object):
         return "{0}(username={1._username}, server={1._server}, port={1._port})".format(self.__class__.__name__, self)
 
 
-def make_simple_text_message(from_address, to_address, subject, text):
+def make_simple_text_message(from_address: str, to_address: str, subject: str, text: str):
     msg = MIMEText(text)
 
     msg['From'] = from_address
@@ -57,7 +57,7 @@ def make_simple_text_message(from_address, to_address, subject, text):
     return msg
 
 
-def make_simple_image_message(from_address, to_address, subject, media):
+def make_simple_image_message(from_address: str, to_address: str, subject: str, media: bytes):
     msg = MIMEMultipart()
 
     msg['From'] = from_address
@@ -79,7 +79,7 @@ class FailedToGetUnreadEmailError(RuntimeError):
 
 class IMAPReceiver(object):
 
-    def __init__(self, username, password, imap_server):
+    def __init__(self, username: str, password: str, imap_server: str):
 
         self._username = username
         self._password = password
@@ -88,7 +88,7 @@ class IMAPReceiver(object):
         logger.debug("Created IMAP Receiver.")
 
     @staticmethod
-    def _build_query(from_addr, read):
+    def _build_query(from_addr: str, read: bool):
         query = ""
 
         if from_addr:
