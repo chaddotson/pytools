@@ -98,7 +98,7 @@ class IMAPReceiver(object):
 
         return query
 
-    def get_new_emails(self, from_addr=None, read=False) -> List[MIMEBase]:
+    def get_emails(self, from_addr=None, read=False) -> List[MIMEBase]:
 
         emails = []
         connection = None
@@ -140,4 +140,14 @@ class IMAPReceiver(object):
                 connection.logout()
 
         return emails
+
+    def get_new_emails(self, from_addr=None, read=False) -> List[MIMEBase]:
+        """
+        This function is deprecated use get_emails
+        :param from_addr:
+        :param read:
+        :return:
+        """
+
+        return self.get_emails(from_addr=from_addr, read=read)
 
